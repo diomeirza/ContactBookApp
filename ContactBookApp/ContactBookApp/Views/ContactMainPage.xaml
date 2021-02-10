@@ -7,7 +7,10 @@
         <ToolbarItem Text="Add" Clicked="AddContact_Clicked" />
     </ContentPage.ToolbarItems>
     <StackLayout>
-        <ListView x:Name="listContact" ItemSelected="Contact_Selected">
+        <ListView x:Name="listContact" 
+                  ItemSelected="Contact_Selected" 
+                  IsPullToRefreshEnabled="True"
+                  Refreshing="Contact_Refresh">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding FullName}">

@@ -1,11 +1,14 @@
 ﻿using ContactBookApp.Models;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ContactBookApp.Interfaces
 {
     public interface IContactService
     {
-        ObservableCollection<Contact> GetContacts();
-        int AddContact(Contact contact);
+        Task<List<Contact>> GetContacts();
+        Task<int> AddContact(Contact contact);
+        Task<int> UpdateContact(Contact contact);
+        Task<int> DeleteContact(int id); 
     }
 }

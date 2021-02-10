@@ -1,42 +1,38 @@
 ﻿using ContactBookApp.Interfaces;
 using ContactBookApp.Models;
+using ContactBookApp.Shared.DB;
+using SQLite;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ContactBookApp.Services
 {
     public class ContactServices : IContactService
     {
-        private ObservableCollection<Contact> _contacts;
+        private SQLiteAsyncConnection _conn;
         public ContactServices()
         {
-            _contacts = new ObservableCollection<Contact>
-            {
-                new Contact { Id = 1, FirstName = "Jenny", LastName = "Blackpink", Phone = "081234567890", Email = "jenny@mail.com", IsBlocked = false},
-                new Contact { Id = 1, FirstName = "Jisoo", LastName = "Blackpink", Phone = "081234567890", Email = "jisoo@mail.com", IsBlocked = false},
-                new Contact { Id = 1, FirstName = "Rose", LastName = "Blackpink", Phone = "081234567890", Email = "rose@mail.com", IsBlocked = false},
-                new Contact { Id = 1, FirstName = "Lisa", LastName = "Blackpink", Phone = "081234567890", Email = "lisa@mail.com", IsBlocked = false},
-                new Contact { Id = 1, FirstName = "Sana", LastName = "Blackpink", Phone = "081234567890", Email = "sana@mail.com", IsBlocked = false}
-            };
+            if (_conn == null)
+                _conn = new ConnectSQLite().GetConnection();
         }
-        public ObservableCollection<Contact> GetContacts()
+        public async Task<List<Contact>> GetContacts()
         {
-            return _contacts;
+            return await _conn.Table<Contact>().ToListAsync();
         }
 
-        public int AddContact(Contact contact)
+        public async Task<int> AddContact(Contact contact)
         {
-            var existingContact = _contacts.Where<Contact>(x => x.Id == contact.Id).FirstOrDefault();
-            if(existingContact != null)
-            {
-                _contacts[_contacts.IndexOf(existingContact)] = contact;
-                return 2;
-            }
-            else
-            {
-                _contacts.Add(contact);
-                return 1;
-            }
+            return await _conn.InsertAsync(contact);
+        }
+        public async Task<int> UpdateContact(Contact contact)
+        {
+            return await _conn.UpdateAsync(contact);
+        }
+        public async Task<int> DeleteContact(int id)
+        {
+            return await _conn.DeleteAsync<Contact>(id);
         }
     }
 }
