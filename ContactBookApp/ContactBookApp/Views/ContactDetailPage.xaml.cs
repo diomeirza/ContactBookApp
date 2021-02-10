@@ -15,13 +15,10 @@ namespace ContactBookApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ContactDetailPage : ContentPage
     {
-        private IContactService _contactService;
+        public event EventHandler<Contact> ContactAdded;
 
-        //public event EventHandler<Contact> ContactAdded;
-
-        public ContactDetailPage(Contact contact,IContactService contactServices = null)
+        public ContactDetailPage(Contact contact)
         {
-            _contactService = contactServices ?? new ContactServices();
             if (contact == null)
                 throw new ArgumentNullException(nameof(contact));
 
@@ -40,8 +37,15 @@ namespace ContactBookApp.Views
         private async void OnSave(object sender, EventArgs e)
         {
             var contact = BindingContext as Contact;
-            _contactService.AddContact(contact);
-            await DisplayAlert("Add Contact", "Contact has been added", "OK");
+
+            if(String.IsNullOrWhiteSpace(contact.FullName))
+            {
+                await DisplayAlert("Error Add Contact", "Name cannot be empty", "OK");
+                return;
+            }
+
+            ContactAdded?.Invoke(this, contact);
+            await DisplayAlert("Add Contact", "Contact has been saved", "OK");
             await Navigation.PopAsync();
         }
     }
