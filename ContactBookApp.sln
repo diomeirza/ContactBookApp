@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBookApp.Android", "ContactBookApp\ContactBookApp.Android\ContactBookApp.Android.csproj", "{DFA18978-99BE-4643-A729-5107F84A3C19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBookApp", "ContactBookApp\ContactBookApp\ContactBookApp.csproj", "{E09612FA-087B-49F2-8433-4022B9E2CE72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFA18978-99BE-4643-A729-5107F84A3C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA18978-99BE-4643-A729-5107F84A3C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA18978-99BE-4643-A729-5107F84A3C19}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DFA18978-99BE-4643-A729-5107F84A3C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA18978-99BE-4643-A729-5107F84A3C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA18978-99BE-4643-A729-5107F84A3C19}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E09612FA-087B-49F2-8433-4022B9E2CE72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09612FA-087B-49F2-8433-4022B9E2CE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09612FA-087B-49F2-8433-4022B9E2CE72}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E09612FA-087B-49F2-8433-4022B9E2CE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09612FA-087B-49F2-8433-4022B9E2CE72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09612FA-087B-49F2-8433-4022B9E2CE72}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2005FE7-42C6-4D2D-A5CF-C9F996B3AC3A}
+	EndGlobalSection
+EndGlobal
