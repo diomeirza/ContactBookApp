@@ -50,9 +50,13 @@ namespace ContactBookApp.Views
 
         private async void Subscribe_ContactDetail_Add(ContactDetailPage page)
         {
-            page.ContactAdded += (source, args) =>
+            page.ContactAdded += async (source, args) =>
             {
-                _contactService.AddContact(args);
+                int isAdded = _contactService.AddContact(args);
+                await DisplayAlert("Add Contact",
+                                   string.Format("Contact has been {0}",isAdded == 1 ? "added": "modified"), 
+                                   "OK");
+                await Navigation.PopAsync();
             };
 
             await Navigation.PushAsync(page);

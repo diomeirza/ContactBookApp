@@ -45,8 +45,6 @@ namespace ContactBookApp.Views
             }
 
             ContactAdded?.Invoke(this, contact);
-            await DisplayAlert("Add Contact", "Contact has been saved", "OK");
-            await Navigation.PopAsync();
         }
     }
 }

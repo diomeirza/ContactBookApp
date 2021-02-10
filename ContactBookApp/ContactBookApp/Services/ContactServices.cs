@@ -24,16 +24,18 @@ namespace ContactBookApp.Services
             return _contacts;
         }
 
-        public void AddContact(Contact contact)
+        public int AddContact(Contact contact)
         {
             var existingContact = _contacts.Where<Contact>(x => x.Id == contact.Id).FirstOrDefault();
             if(existingContact != null)
             {
                 _contacts[_contacts.IndexOf(existingContact)] = contact;
+                return 2;
             }
             else
             {
                 _contacts.Add(contact);
+                return 1;
             }
         }
     }

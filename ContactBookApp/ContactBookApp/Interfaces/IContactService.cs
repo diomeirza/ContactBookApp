@@ -6,6 +6,6 @@ namespace ContactBookApp.Interfaces
     public interface IContactService
     {
         ObservableCollection<Contact> GetContacts();
-        void AddContact(Contact contact);
+        int AddContact(Contact contact);
     }
 }
