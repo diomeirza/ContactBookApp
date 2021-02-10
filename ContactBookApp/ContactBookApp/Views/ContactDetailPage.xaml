@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:ContactBookApp.Shared"
              x:Class="ContactBookApp.Views.ContactDetailPage"
              Title="Contact Detail">
     <StackLayout>
         <TableView Intent="Form">
             <TableRoot>
                 <TableSection Title="NAME">
-                    <EntryCell Placeholder="First Name" Text="{Binding FirstName}" />
-                    <EntryCell Placeholder="Last Name" Text="{Binding LastName}" />
+                    <local:CustomEntry Placeholder="First Name" Text="{Binding FirstName}" />
+                    <local:CustomEntry Placeholder="Last Name" Text="{Binding LastName}" />
                 </TableSection>
                 <TableSection Title="CONTACT">
-                    <EntryCell Placeholder="Phone" Text="{Binding Phone}" />
-                    <EntryCell Placeholder="Email" Text="{Binding Email}" />
+                    <local:CustomEntry Placeholder="Phone" Text="{Binding Phone}" />
+                    <local:CustomEntry Placeholder="Email" Text="{Binding Email}" />
                 </TableSection>
                 <TableSection Title="OTHER">
                     <SwitchCell Text="Blocked" On="{Binding IsBlocked}" />
