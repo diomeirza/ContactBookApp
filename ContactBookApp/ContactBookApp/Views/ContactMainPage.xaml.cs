@@ -69,8 +69,7 @@ namespace ContactBookApp.Views
         {
             page.ContactAdded += async (source, args) =>
             {
-                var existingContact = _contacts.Where<Contact>(x => x.Id == args.Id).FirstOrDefault();
-                bool isAdd = existingContact == null;
+                bool isAdd = args.Id == 0;
                 if (isAdd)
                 {
                     _contacts.Add(args);
@@ -78,11 +77,12 @@ namespace ContactBookApp.Views
                 }
                 else 
                 {
+                    var existingContact = _contacts.Where<Contact>(x => x.Id == args.Id).FirstOrDefault();
                     _contacts[_contacts.IndexOf(existingContact)] = args;
                     await _contactService.UpdateContact(args);
                 }
                 await DisplayAlert("Add Contact",
-                                   string.Format("Contact has been {0}", isAdd ? "added": "modified"), 
+                                   string.Format("Contact has been {0}", (isAdd) ? "added": "modified"), 
                                    "OK");
                 await Navigation.PopAsync();
             };
