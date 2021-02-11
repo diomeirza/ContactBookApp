@@ -17,7 +17,8 @@ namespace ContactBookApp.Views
         private ObservableCollection<Contact> _contacts;
         public ContactMainPage()
         {
-            _contactService = new ContactServices();
+            if (_contactService == null)
+                _contactService = new ContactService();
 
             InitializeComponent();
             
