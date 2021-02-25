@@ -8,19 +8,19 @@
         <TableView Intent="Form">
             <TableRoot>
                 <TableSection Title="NAME">
-                    <local:CustomEntry Placeholder="First Name" Text="{Binding FirstName}" />
-                    <local:CustomEntry Placeholder="Last Name" Text="{Binding LastName}" />
+                    <local:CustomEntry Placeholder="First Name" Text="{Binding Contact.FirstName}" />
+                    <local:CustomEntry Placeholder="Last Name" Text="{Binding Contact.LastName}" />
                 </TableSection>
                 <TableSection Title="CONTACT">
-                    <local:CustomEntry Placeholder="Phone" Text="{Binding Phone}" />
-                    <local:CustomEntry Placeholder="Email" Text="{Binding Email}" />
+                    <local:CustomEntry Placeholder="Phone" Text="{Binding Contact.Phone}" Keyboard="Numeric" />
+                    <local:CustomEntry Placeholder="Email" Text="{Binding Contact.Email}" Keyboard="Email" />
                 </TableSection>
                 <TableSection Title="OTHER">
-                    <SwitchCell Text="Blocked" On="{Binding IsBlocked}" />
+                    <SwitchCell Text="Blocked" On="{Binding Contact.IsBlocked}" />
                 </TableSection>
                 <TableSection>
                     <ViewCell>
-                        <Button Text="Save" Clicked="OnSave" />
+                        <Button Text="Save" Command="{Binding SaveCommand}" />
                     </ViewCell>
                 </TableSection>
             </TableRoot>

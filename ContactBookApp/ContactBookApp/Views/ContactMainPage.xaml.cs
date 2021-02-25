@@ -1,10 +1,5 @@
-﻿using ContactBookApp.Interfaces;
-using ContactBookApp.Models;
-using ContactBookApp.Services;
+﻿using ContactBookApp.Services;
 using ContactBookApp.ViewModels;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

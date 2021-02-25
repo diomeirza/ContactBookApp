@@ -15,6 +15,7 @@ namespace ContactBookApp.ViewModels
         private IPageService _pageService;
         private IContactService _contactService;
         private bool _isDataLoaded;
+        private Contact _selectedContact;
 
         public ICommand LoadCommand { get; private set; }
         public ICommand DeleteContactCommand { get; private set; }
@@ -22,7 +23,16 @@ namespace ContactBookApp.ViewModels
         public ICommand ContactSelectedCommand { get; private set; }
 
         public ObservableCollection<Contact> Contacts { get; private set; }
-        public Contact SelectedContact { get; set; }
+        public Contact SelectedContact { 
+            get
+            {
+                return _selectedContact;
+            }
+            private set
+            {
+                SetValue(ref _selectedContact, value);
+            }
+        }
 
         public ContactMainPageViewModel(IPageService pageService, IContactService contactService)
         {
@@ -50,20 +60,22 @@ namespace ContactBookApp.ViewModels
 
         private async Task AddContact()
         {
-            var page = new ContactDetailPage(new Contact());
+            var viewModel = new ContactDetailPageViewModel(new Contact());
+            var page = new ContactDetailPage(viewModel);
 
-            await Subscribe_ContactDetail_Add(page);
+            await Subscribe_ContactDetail_Add(page, viewModel);
         }
 
         private async Task Contact_Selected(Contact contactSelected)
         {
             if (contactSelected == null)
                 return;
+            SelectedContact = contactSelected;
 
-            SelectedContact = null;
-            var page = new ContactDetailPage(contactSelected);
+            var viewModel = new ContactDetailPageViewModel(contactSelected);
+            var page = new ContactDetailPage(viewModel);
 
-            await Subscribe_ContactDetail_Add(page);
+            await Subscribe_ContactDetail_Add(page, viewModel);
         }
 
         private async Task Contact_Deleted(Contact deletedContact)
@@ -75,9 +87,10 @@ namespace ContactBookApp.ViewModels
             }
         }
 
-        private async Task Subscribe_ContactDetail_Add(ContactDetailPage page)
+        private async Task Subscribe_ContactDetail_Add(ContactDetailPage page,ContactDetailPageViewModel viewModel)
         {
-            page.ContactAdded += async (source, args) =>
+            SelectedContact = null;
+            viewModel.ContactAdded += async (source, args) =>
             {
                 bool isAdd = args.Id == 0;
                 if (isAdd)
